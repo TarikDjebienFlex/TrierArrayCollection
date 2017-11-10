@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"
+			   creationComplete="application1_creationCompleteHandler(event)"
+			   >
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.Sort;
+			import mx.collections.SortField;
+			import mx.events.FlexEvent;
+			
+			protected function application1_creationCompleteHandler(event:FlexEvent):void
+			{
+				
+			}
+
+
+			protected function trier(event:MouseEvent):void
+			{
+				var tri:Sort = new Sort();
+				tri.fields   = [ new SortField( "lastname" ) ];
+				contactCollec.sort = tri;
+				contactCollec.refresh();
+			}
+
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:ArrayCollection id="contactCollec">
+			<fx:Object firstname="Yann" lastname="Négroni" />
+			<fx:Object firstname="Myriam" lastname="Longuet" />
+			<fx:Object firstname="Marion" lastname="Le Cloarec" />
+			<fx:Object firstname="Magalie" lastname="Cartier" />
+			<fx:Object firstname="Stéphane" lastname="Lim" />
+			<fx:Object firstname="Olivier" lastname="Rougeron" />
+			<fx:Object firstname="Jian" lastname="Liu" />
+			<fx:Object firstname="Sébastien" lastname="Kafif" />
+			<fx:Object firstname="Fouad" lastname="Oudjikt" />
+			<fx:Object firstname="Stephen" lastname="Berthelot" />
+			<fx:Object firstname="Sébastien" lastname="Legrand" />
+		</s:ArrayCollection>
+	</fx:Declarations>
+	
+	
+	
+	<s:Panel title="Liste de contacts" width="50%" height="80%" 
+			 horizontalCenter="0" verticalCenter="0">
+		
+		<mx:DataGrid dataProvider="{ contactCollec }" width="100%" height="100%">
+			<mx:columns>
+				<mx:DataGridColumn dataField="firstname" headerText="Prénom" />
+				<mx:DataGridColumn dataField="lastname" headerText="Nom" />
+			</mx:columns>
+		</mx:DataGrid>
+		
+		<s:controlBarContent>
+			<s:Button label="Trier" click="trier(event)" />
+		</s:controlBarContent>
+	</s:Panel>
+	
+	
+	
+	
+</s:Application>
